@@ -1,0 +1,9 @@
+.card-header {
+  background-color: rgb(128, 4, 0);
+  color: white;
+}
+
+label {
+  text-transform: capitalize;
+  margin-top: 10px;
+}

@@ -1,0 +1,38 @@
+<section class="card">
+  <div class="card-header">
+    <h3>Excursiones</h3>
+  </div>
+  <div class="card-body">
+    <div v-if="excursiones.length">
+      <div class="table-responsive mb-3 mt-3 border border-secondary rounded p-3 bg-light shadow">
+        <table class="table table-bordered table-striped table-hover table-responsive">
+          <caption>Lista de Excursiones disponibles para esta semana</caption>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Partida</th>
+              <th>Destino</th>
+              <th>Día</th>
+              <th>Nombre de Guia</th>
+              <th>Capacidad Total</th>
+              <th>Capacidad Ocupada</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(excursion, index) in excursiones" :key="index">
+              <td>{{ excursion.id }}</td>
+              <td>{{ excursion.partida }}</td>
+              <td>{{ excursion.destino }}</td>
+              <td>{{ excursion.dia }}</td>
+              <td>{{ excursion.nombreGuia }}</td>
+              <td>{{ excursion.capacidadTotal }}</td>
+              <td>{{ excursion.capacidadOcupada }}</td>
+              <td>{{ excursion.precio }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

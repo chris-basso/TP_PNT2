@@ -1,0 +1,103 @@
+<section class="card">
+  <div class="card-header">
+    <h3>Inscripción de Turistas</h3>
+  </div>
+
+  <div class="card-body p-3">
+
+    <form novalidate @submit.prevent="enviar()">
+
+      <div class="form-group">
+        <label for="nombre">nombre</label>
+        <input id="nombre" class="form-control" type="text" v-model.trim="formData.nombre"
+          @input="formDirty.nombre=true" />
+        <div v-if="errorNombre.mostrar" class="alert alert-danger my-1">
+          {{ errorNombre.mensaje}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="edad">edad</label>
+        <input id="edad" class="form-control" type="number" v-model.number="formData.edad"
+          @input="formDirty.edad=true" />
+        <div v-if="errorEdad.mostrar" class="alert alert-danger my-1">
+          {{ errorEdad.mensaje}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" type="text" v-model.trim="formData.email"
+          @input="formDirty.email=true" />
+        <div v-if="errorEmail.mostrar" class="alert alert-danger my-1">
+          {{ errorEmail.mensaje}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="numeroTelefono">Numero de teléfono</label>
+        <input id="numeroTelefono" class="form-control" type="text" v-model.trim="formData.numeroTelefono"
+          @input="formDirty.numeroTelefono=true" />
+        <div v-if="errorNumeroTelefono.mostrar" class="alert alert-danger my-1">
+          {{ errorNumeroTelefono.mensaje}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dia">Día</label>
+        <select id="dia" class="form-control" v-model="formData.dia" @input="formDirty.dia=true">
+          <option value="">Seleccione un día</option>
+          <option value="Sunday">Domingo</option>
+          <option value="Monday">Lunes</option>
+          <option value="Tuesday">Martes</option>
+          <option value="Wednesday">Miércoles</option>
+          <option value="Thursday">Jueves</option>
+          <option value="Friday">Viernes</option>
+          <option value="Saturday">Sábado</option>
+        </select>
+        <div v-if="errorDia.mostrar" class="alert alert-danger my-1">
+          {{ errorDia.mensaje}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="pago">Pagó</label>
+        <select id="pago" class="form-control" v-model="formData.pago" @input="formDirty.pago=true">
+          <option value="">Seleccione una opción</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
+        </select>
+        <div v-if="errorPago.mostrar" class="alert alert-danger my-1">
+          {{ errorPago.mensaje}}
+        </div>
+      </div>
+
+      <button class="btn btn-success my-3" :disabled="validarBotonEnvio()">Enviar</button>
+    </form>
+    <hr>
+    <table v-if="turistas.length" class="table table-bordered table-striped table-hover table-responsive">
+
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Email</th>
+          <th>Número de teléfono</th>
+          <th>Día</th>
+          <th>Pagó</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(turista, index) in turistas" :key="index">
+          <td>{{ turista.nombre }}</td>
+          <td>{{ turista.edad }}</td>
+          <td>{{ turista.email }}</td>
+          <td>{{ turista.numeroTelefono }}</td>
+          <td>{{ turista.dia }}</td>
+          <td>{{ turista.pago }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p v-else class="text-muted">No hay turistas inscriptos.</p>
+  </div>
+</section>

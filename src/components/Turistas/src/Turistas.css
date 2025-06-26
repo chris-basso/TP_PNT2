@@ -1,0 +1,16 @@
+.card-header {
+  background-color: rgb(128, 4, 0);
+  color: white;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.table th {
+  text-transform: uppercase;
+}
+
+label {
+  text-transform: capitalize;
+}
