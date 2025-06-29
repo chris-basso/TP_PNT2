@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 export const useGlobalStore = defineStore('global', {
-  state: () => ({ contador: 250 }),
+  state: () => ({ contador: 0 }),
   getters: {
     getContador: state => state.contador
   },

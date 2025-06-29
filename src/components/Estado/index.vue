@@ -34,6 +34,7 @@ export default {
   mounted() {
     console.log('Registro -> mounted')
     this.obtener()
+    
   },
   data() {
     return {
@@ -49,8 +50,9 @@ export default {
     },
     async obtener() {
       const excursiones = await this.servicioExcursiones.getAll()
-
       this.excursiones = excursiones
+      this.globalStore.contador = this.excursionesDisponibles
+
     },
     colorTarjeta(excursion) {
       const dif = excursion.capacidadTotal - excursion.capacidadOcupada
@@ -59,6 +61,16 @@ export default {
     }
   },
   computed: {
+    excursionesDisponibles(){
+      let contador = 0
+      this.excursiones.forEach(e => {
+        const dif = e.capacidadTotal - e.capacidadOcupada
+        if (dif > 0) {
+          contador++
+        }
+      });
+      return contador
+    }
   }
 }
 </script>
