@@ -36,11 +36,16 @@ export default {
     },
 
     validarBotonEnvio() {
-      return !this.errorPartida.ok || !this.errorDestino.ok || !this.errorDia.ok || !this.errorCapacidadTotal.ok || !this.errorCapacidadOcupada.ok || !this.errorPrecio.ok || !this.errorNombreGuia.ok 
+      return !this.errorPartida.ok || !this.errorDestino.ok || !this.errorDia.ok || !this.errorCapacidadTotal.ok || !this.errorCapacidadOcupada.ok || !this.errorPrecio.ok || !this.errorNombreGuia.ok
     },
 
     async enviarActualizar() {
-      const excursion = { ...this.excursion }
+
+       Object.keys(this.excursionDirty).forEach(k => this.excursionDirty[k] = true);
+
+      if (this.validarBotonEnvio()) return;
+
+  const excursion = { ...this.excursion };
 
 
       if (!this.idEditar) {
@@ -108,7 +113,7 @@ export default {
       else if (this.excursion.partida?.length > 20) mensaje = 'Este campo debe poseer como máximo 20 caracteres'
 
       return {
-        mostrar: mensaje != '' && this.excursion.partida,
+        mostrar: mensaje != '' && this.excursionDirty.partida,
         mensaje,
         ok: mensaje == ''
       }
@@ -120,7 +125,7 @@ export default {
       else if (this.excursion.destino?.length > 20) mensaje = 'Este campo debe poseer como máximo 20 caracteres'
 
       return {
-        mostrar: mensaje != '' && this.excursion.destino,
+        mostrar: mensaje != '' && this.excursionDirty.destino,
         mensaje,
         ok: mensaje == ''
       }
@@ -130,7 +135,7 @@ export default {
       if (!this.excursion.dia) mensaje = 'Campo requerido'
 
       return {
-        mostrar: mensaje != '' && this.excursion.dia,
+        mostrar: mensaje != '' && this.excursionDirty.dia,
         mensaje,
         ok: mensaje == ''
       }
@@ -142,7 +147,7 @@ export default {
       else if (this.excursion.nombreGuia?.length > 20) mensaje = 'Este campo debe poseer como máximo 20 caracteres'
 
       return {
-        mostrar: mensaje != '' && this.excursion.nombreGuia,
+        mostrar: mensaje != '' && this.excursionDirty.nombreGuia,
         mensaje,
         ok: mensaje == ''
       }
@@ -150,14 +155,14 @@ export default {
 
     errorCapacidadTotal() {
       let mensaje = ''
-     if (this.excursion.capacidadTotal === null || this.excursion.capacidadTotal === undefined || this.excursion.capacidadTotal === '') mensaje = 'Campo requerido'
+      if (this.excursion.capacidadTotal === null || this.excursion.capacidadTotal === undefined || this.excursion.capacidadTotal === '') mensaje = 'Campo requerido'
       else if (isNaN(this.excursion.capacidadTotal)) mensaje = 'La capacidad total debe ser un número'
       else if (this.excursion.capacidadTotal < 1) mensaje = 'La capacidad total debe ser mayor a 0'
       else if (this.excursion.capacidadTotal > 1000) mensaje = 'La capacidad total no puede ser mayor a 1000'
       else if (this.excursion.capacidadTotal < this.excursion.capacidadOcupada) mensaje = 'La capacidad total no puede ser menor a la capacidad ocupada'
 
       return {
-        mostrar: mensaje != '' && this.excursion.capacidadTotal,
+        mostrar: mensaje != '' && this.excursionDirty.capacidadTotal,
         mensaje,
         ok: mensaje == ''
       }
@@ -172,7 +177,7 @@ export default {
       else if (this.excursion.capacidadOcupada > 1000) mensaje = 'La capacidad ocupada no puede ser mayor a 1000'
 
       return {
-        mostrar: mensaje != '' && this.excursion.capacidadOcupada,
+        mostrar: mensaje != '' && this.excursionDirty.capacidadOcupada,
         mensaje,
         ok: mensaje == ''
       }
@@ -186,7 +191,7 @@ export default {
       else if (this.excursion.precio > 100000) mensaje = 'El precio no puede ser mayor a 100000'
 
       return {
-        mostrar: mensaje != '' && this.excursion.precio,
+        mostrar: mensaje != '' && this.excursionDirty.precio,
         mensaje,
         ok: mensaje == ''
       }

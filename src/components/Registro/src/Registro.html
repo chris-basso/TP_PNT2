@@ -29,13 +29,13 @@
         <label for="dia">Día</label>
         <select id="dia" class="form-control w-50" v-model="excursion.dia" @input="excursionDirty.dia=true">
           <option value="">Seleccione un día</option>
-          <option value="domingo">Domingo</option>
-          <option value="lunes">Lunes</option>
-          <option value="martes">Martes</option>
-          <option value="miércoles">Miércoles</option>
-          <option value="jueves">Jueves</option>
-          <option value="viernes">Viernes</option>
-          <option value="sábado">Sábado</option>
+          <option value="Sunday">Domingo</option>
+          <option value="Monday">Lunes</option>
+          <option value="Tuesday">Martes</option>
+          <option value="Wednesday">Miércoles</option>
+          <option value="Thursday">Jueves</option>
+          <option value="Friday">Viernes</option>
+          <option value="Saturday">Sábado</option>
         </select>
         <div v-if="errorDia.mostrar" class="alert alert-danger my-1">
           {{ errorDia.mensaje}}
@@ -54,8 +54,8 @@
       <div class="form-group">
         <label for="capacidadTotal">Capacidad Total</label>
         <input id="capacidadTotal" type="number" class="form-control w-50" v-model.trim="excursion.capacidadTotal"
-          @input="excursionDirty.capacidadTotal = true">
- <div v-if = "errorCapacidadTotal.mostrar" class="alert alert-danger my-1">
+          @blur="excursionDirty.capacidadTotal = true">
+        <div v-if="errorCapacidadTotal.mostrar" class="alert alert-danger my-1">
           {{ error.capacidadTotal.mensaje}}
         </div>
 
@@ -64,7 +64,7 @@
       <div class="form-group">
         <label for="capacidadOcupada">Capacidad Ocupada</label>
         <input id="capacidadOcupada" type="number" class="form-control w-50" v-model.trim="excursion.capacidadOcupada"
-          @input="excursionDirty.capacidadOcupada = true">
+          @blur="excursionDirty.capacidadOcupada = true">
         <div v-if="errorCapacidadOcupada.mostrar" class="alert alert-danger my-1">
           {{ errorCapacidadOcupada.mensaje}}
         </div>
@@ -80,19 +80,10 @@
         </div>
       </div>
 
-      <!-- <button type="submit" :class="['btn', {'btn-success':!idEditar, 'btn-warning':idEditar}, 'my-4']">{{idEditar?
-        'Actualizar':'Enviar'}}</button>
-
-        <button class="btn btn-success my-3" :disabled="validarBotonEnvio()">Enviar</button> -->
-
-<button
-  type="submit"
-  :class="['btn', idEditar ? 'btn-warning' : 'btn-success', 'my-4']"
-  :disabled="validarBotonEnvio()"
->
-  {{ idEditar ? 'Actualizar' : 'Enviar' }}
-</button>
-
+      <button type="submit" :class="['btn', {'btn-success':!idEditar, 'btn-warning':idEditar}, 'my-4']"
+        :disabled="validarBotonEnvio()">{{idEditar?
+        'Actualizar':'Enviar'}}
+      </button>
     </form>
 
     <div v-if="excursiones.length">
