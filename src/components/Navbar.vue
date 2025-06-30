@@ -26,8 +26,8 @@
             <RouterLink class="nav-link" to="/estado">Estado</RouterLink>
           </li>
           <li class="nav-item ">
-            <RouterLink class="nav-link" to="/global" style="font-style: italic">Ya hemos hecho {{
-              globalStore.getContador }} excursiones esta semana!</RouterLink>
+            <RouterLink class="nav-link" to="/estado" style="font-style: italic">Ya hemos hecho {{
+              globalStore.getExcursionesHechas }} excursiones esta semana!</RouterLink>
           </li>
         </ul>
       </div>

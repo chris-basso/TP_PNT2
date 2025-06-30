@@ -4,10 +4,7 @@
       <h3>Estado de las excursiones de la semana</h3>
     </div>
     <div class="card-body">
-      <h4>Excursiones completas esta semana: {{ globalStore.getContador }}</h4>
-      <button class="btn btn-primary my-3" @click="incrementar">Agregar </button>
-
-
+      <h4 class="m-3">Excursiones disponibles esta semana: {{ globalStore.getContador }}</h4>
       <div v-for="(excursion, index) in excursiones" :key="index"
         class="media alert alert-secondary mb-3 d-flex align-items-center" :class="colorTarjeta(excursion)">
         <img :src="excursion.fotoGuia" width="150" class="me-3">
@@ -40,7 +37,7 @@ export default {
     return {
       globalStore: useGlobalStore(),
       servicioExcursiones: new ServicioExcursiones(),
-      excursiones: [],
+      excursiones: []
     }
   },
   methods: {
@@ -51,7 +48,7 @@ export default {
     async obtener() {
       const excursiones = await this.servicioExcursiones.getAll()
       this.excursiones = excursiones
-      this.globalStore.contador = this.excursionesDisponibles
+      this.globalStore.setExcursiones(excursiones)
 
     },
     colorTarjeta(excursion) {
