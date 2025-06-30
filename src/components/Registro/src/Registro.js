@@ -109,7 +109,7 @@ export default {
     errorPartida() {
       let mensaje = ''
       if (!this.excursion.partida) mensaje = 'Campo requerido'
-      else if (this.excursion.partida?.length < 3) mensaje = 'Este campo debe poseer como mínimo 5 caracteres'
+      else if (this.excursion.partida?.length < 3) mensaje = 'Este campo debe poseer como mínimo 3 caracteres'
       else if (this.excursion.partida?.length > 20) mensaje = 'Este campo debe poseer como máximo 20 caracteres'
 
       return {

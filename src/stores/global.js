@@ -9,5 +9,8 @@ export const useGlobalStore = defineStore('global', {
     incrementarContador(paso) {
       this.contador += paso
     },
+    decrementarContador(paso) {
+      this.contador -= paso
+    }
   },
 })

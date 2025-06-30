@@ -41,7 +41,6 @@ export default {
       this.formData = this.getInicialData()
       this.formDirty = this.getInicialData()
       const turistaGuardado = await this.servicioTuristas.post(datos)
-
       this.turistas.push(turistaGuardado)
     }
   },
